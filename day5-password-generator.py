@@ -32,7 +32,7 @@ for letter in range(0, nr_letters):
 for number in range(0, nr_numbers):
     list_of_char.append("number")
 for symbol in range(0, nr_symbols):
-    list_of_char.append("number")
+    list_of_char.append("symbols")
 
 for char in range(0, sum_of_char):
     type_of_char = random.choice(list_of_char)

@@ -18,7 +18,7 @@
 ## The computer is the dealer.
 from day11_art import logo
 import random
-
+from replit import clear
 
 cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 
@@ -80,12 +80,14 @@ def get_winner(hands, computer_sum, human_sum):
 def new_game():
     start_game = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ")
     if start_game == "y":
+        clear()
         game()
     else:
         print("Goodbye")
         exit()
 
 def game():
+    print(logo)
     hands = {}
     hands = start(hands)
     game_state(hands)
@@ -104,12 +106,6 @@ def game():
         get_winner(hands, computer_sum, human_sum)
     else:
         print("You overdrew. You lose...")
-    new_game = input("Type 'y' to start a new game or 'n' to exit: ")
-    if new_game == "y":
-        game()
-    else:
-        print("Goodbye")
-        exit()
+    new_game()
 
-print(logo)
 new_game()

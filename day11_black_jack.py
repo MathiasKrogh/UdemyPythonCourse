@@ -37,10 +37,10 @@ def computer_end(computer_hand):
         sum = sum_of_hand(computer_hand)
         if sum == 21:
             forced_hit = False
-        elif sum < 17:
+        elif sum <= 16:
             computer_hand.append(get_extra_card())
-        elif 16 < sum and 11 in computer_hand:
-            computer_hand.append(get_extra_card())
+        elif 17 <= sum and 11 in computer_hand and sum < 22:
+            forced_hit = False
         else:
             forced_hit = False
     return computer_hand
@@ -61,46 +61,55 @@ def get_extra_card():
     new_card = random.choice(cards)
     return new_card
 
-def get_winner(computer_sum, human_sum):
+def get_winner(hands, computer_sum, human_sum):
+    print(f"Your hand at the end was {hands["human"]}")
+    print(f"The computers hand at the end was {hands["computer"]}")
     print(f"The computer had a sum of {computer_sum}")
     print(f"You had a sum of {human_sum}")
-    if computer_sum == human_sum:
+    if 21 < computer_sum:
+        print("The computer overdrew. You win!")
+    elif computer_sum == human_sum:
         print("The match drew...")
     elif human_sum < computer_sum:
         print("You lose...")
     else:
         print("You win!")
 
+        
+
+def new_game():
+    start_game = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ")
+    if start_game == "y":
+        game()
+    else:
+        print("Goodbye")
+        exit()
 
 def game():
     hands = {}
-    start_game = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ")
-    if start_game == 'y':
-        hands = start(hands)
-        game_state(hands)
-        hit = True
-        while sum_of_hand(hands["human"]) < 21 and hit:
-            extra_card = input("Type 'y' to get another card, type 'n' to pass: ")
-            if extra_card == 'y':
-                hands["human"].append(get_extra_card())
-            else:
-                hit = False
-            game_state(hands)
-        human_sum = sum_of_hand(hands["human"])
-        if human_sum < 22:
-            hands["computer"] = computer_end(hands["computer"])
-            computer_sum = sum_of_hand(hands["computer"])
-            if computer_sum < 22:
-                print(f"The computers hand was at the end {hands["computer"]}")
-                get_winner(computer_sum, human_sum)
-            else:
-                print(f"The computers hand was at the end {hands["computer"]}")
-                print(f"The computer had a sum of {computer_sum}")
-                print("The computer overdrew. You win!")
+    hands = start(hands)
+    game_state(hands)
+    hit = True
+    while sum_of_hand(hands["human"]) < 21 and hit:
+        extra_card = input("Type 'y' to get another card, type 'n' to pass: ")
+        if extra_card == 'y':
+            hands["human"].append(get_extra_card())
         else:
-            print("You overdrew. You lose...")
+            hit = False
+        game_state(hands)
+    human_sum = sum_of_hand(hands["human"])
+    if human_sum < 22:
+        hands["computer"] = computer_end(hands["computer"])
+        computer_sum = sum_of_hand(hands["computer"])
+        get_winner(hands, computer_sum, human_sum)
+    else:
+        print("You overdrew. You lose...")
+    new_game = input("Type 'y' to start a new game or 'n' to exit: ")
+    if new_game == "y":
+        game()
     else:
         print("Goodbye")
+        exit()
 
 print(logo)
-game()
+new_game()

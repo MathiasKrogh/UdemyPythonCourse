@@ -3,7 +3,6 @@ from day14_art import logo, vs
 from random import choice
 from replit import clear
 
-
 #Start by creating two instances
 def start():
     a = choice(data)
@@ -11,14 +10,11 @@ def start():
     b = make_unique(a, b)
     return [a, b]
 
-c = 3
-
 #Makes sure the options are unique
 def make_unique(a, b):
     while a == b:
         b = choice(data)
     return b
-
 
 #Check if you guessed the highest follower count
 def check_highest(score, answer, game_data):
@@ -31,20 +27,17 @@ def check_highest(score, answer, game_data):
     else:
         return score
 
-
 #Updates A = B and B = new instance
 def update_game_data(game_data):
     game_data[0] = game_data[1]
     game_data[1] = make_unique(game_data[0], game_data[1])
     return game_data
 
-
 #Prints game over screen
 def game_end(score):
     clear()
     print(logo)
-    print(f"Sorry, that's wrong. Final score: {score}")
-
+    print(f"Sorry, that's wrong. Final score: {score}") 
 
 #Prints each r
 def new_round(game_data, score):
@@ -55,7 +48,6 @@ def new_round(game_data, score):
     print(vs)
     print(f"Against B: {game_data[1]["name"]}, a {game_data[1]["description"]}, from {game_data[1]["country"]}.")
     return input("Who has more followers? Type 'A' or 'B': ").lower()
-
 
 #The game itself with all methods implemented
 def new_game():
@@ -72,6 +64,5 @@ def new_game():
             game_data = update_game_data(game_data)
             answer = new_round(game_data, score)
     game_end(score)
-
 
 new_game()

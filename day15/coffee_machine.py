@@ -67,6 +67,7 @@ def insert_coins(flavour, choice):
     else:
         print("Sorry that's not enough money. Money refunded.")
 
+
 if __name__ == "__main__":
     clear()
     while True:
@@ -84,3 +85,4 @@ if __name__ == "__main__":
                 print(f"Sorry, there is not enough {problem}.")
         else:
             print("Not a valid option. ")
+            

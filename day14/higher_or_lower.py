@@ -1,7 +1,10 @@
-from day14_game_data import data
-from day14_art import logo, vs
+from game_data import data
+from art import logo, vs
 from random import choice
-from replit import clear
+import os
+
+def clear():
+    os.system('cls')
 
 #Start by creating two instances
 def start():

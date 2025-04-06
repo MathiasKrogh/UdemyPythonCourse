@@ -1,4 +1,4 @@
-from day12_art import logo
+from art import logo
 from random import randint
 
 chosen_number = randint(1, 100)

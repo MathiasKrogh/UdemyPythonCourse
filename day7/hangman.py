@@ -1,7 +1,10 @@
 import random
-from replit import clear
-from day7_hangman_art import stages, logo
-from day7_hangman_words import word_list
+import os
+from hangman_art import stages, logo
+from hangman_words import word_list
+
+def clear():
+    os.system('cls')
 
 chosen_word = random.choice(word_list)
 word_length = len(chosen_word)

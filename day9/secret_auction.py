@@ -1,5 +1,8 @@
-from replit import clear
-from day9_art import logo
+import os
+from art import logo
+
+def clear():
+    os.system('cls')
 
 def find_highest_bid(bidders):
     top_bidder = ""

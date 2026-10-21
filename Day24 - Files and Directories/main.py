@@ -7,9 +7,8 @@
     #Hint2: This method will also help you: https://www.w3schools.com/python/ref_string_replace.asp
         #Hint3: THis method will help you: https://www.w3schools.com/python/ref_string_strip.asp
 
-file = open("./Input/Letters/starting_letter.txt")
-starting_letter = file.read()
-file.close()
+with open("./Input/Letters/starting_letter.txt") as file:
+    starting_letter = file.read()
 
 with open("./Input/Names/invited_names.txt") as file:
     for name in file.readlines():
